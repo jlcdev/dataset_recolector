@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="frase"></div>
+        <div style="float:left" onclick="get_phrase()">🔄</div>
+        <div border="1">Recorder space</div>
+    </body>
+    <script>
+        
+        function load(url, callback) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    callback(xhr.response)
+                }
+            }
+
+            xhr.open('GET', url, true)
+            xhr.send();
+        }
+
+
+        function pinta_frase(frase) {
+            console.log(frase)
+            document.getElementById('frase').innerHTML = frase
+        }
+
+        
+        function get_phrase() {
+            load('http://localhost:8000/phrase', pinta_frase)
+        }
+
+        get_phrase()
+    </script>
+</html>
