@@ -4,7 +4,8 @@ const app = express()
 
 
 const PORT = 8000
-app.use('/', express.static(__dirname + '/index.html'))
+console.log("__dirname:" + __dirname)
+app.use('/', express.static(__dirname + '/public'))
 
 app.use(fileUpload())
 
