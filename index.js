@@ -1,5 +1,6 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
 const app = express()
 
 
@@ -14,12 +15,21 @@ app.post('/upload', (req, res) => {
   {
     return res.status(400).send('No files were uploaded.')
   }
+  audioDescriptor = req.files.audioFile
+  console.log(audioDescriptor)
+  
+  fs.writeFile('audioFiles/'+audioDescriptor.name+'.ogg', audioDescriptor.data, (err) => {
+    if (err) throw err;
+    console.log(audioDescriptor.name + ': The file has been saved!');
+  })
+  /*
   let sampleFile = req.files.sampleFile
 
   sampleFile.mv('nameFile', (err) => {
     if(err) return res.status(500).send(err)
     res.send('File uploaded!')
   });
+  */
 });
 
 app.get('/phrase', (req, res) => {

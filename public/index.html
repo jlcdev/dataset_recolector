@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
     </head>
     <body>
-        <div id="frase"></div>
-        <div style="float:left" onclick="get_phrase()">🔄</div>
-        <div border="1">Recorder space</div>
+        <div class="block_padding" id="frase"></div>
+        <div style="float:right" onclick="get_phrase()">🔄</div>
+        <div style="border: 1px solid">
+            Recorder space 
+            <span id="btnRecord">🔴</span>
+            <span id="btnStop">⏹️</span>
+            <span id="btnPlay" onclick="play_recording()">▶️</span>
+            <div>
+                <span>Status:</span> <span id="status">Stopped</span>
+            </div>
+            <canvas width="1200" height="80" id="visualizer"></canvas>
+        </div>
+
+        <section id="soundList" class="sound-clips">
+
+
+        </section>
     </body>
+    <script src="record.js"></script>
     <script>
         
         function load(url, callback) {
